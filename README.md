@@ -9,6 +9,7 @@ I believe my app has potential to be used by a wide variety of people:
 - Athletes
 - People with eating disorders
 - Anyone actively trying to track their calories to gain/lose weight
+
 With an extremely simple and user-friendly design, I believe my app can be used by almost anyone. The reason that this project is of interest to me is because managing my weight has always been troublesome for me, and as I am *bulking*, I think it just makes sense for me to create this applicaiton. 
 
 ## User Stories
