@@ -13,7 +13,8 @@ public class Meal {
     // food items
     public Meal(String mealType) {
         if (mealType.equalsIgnoreCase("breakfast") || mealType.equalsIgnoreCase("lunch")
-                || mealType.equalsIgnoreCase("dinner") || mealType.equalsIgnoreCase("snack")) {
+                || mealType.equalsIgnoreCase("dinner") || mealType.equalsIgnoreCase("snack")
+                || mealType.equalsIgnoreCase("daily log")) {
             this.mealType = mealType;
         } else {
             throw new IllegalArgumentException("Invalid meal type: " + mealType);

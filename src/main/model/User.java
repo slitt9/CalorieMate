@@ -102,17 +102,17 @@ public class User {
     public int calculateMaintenanceCalories() {
         int bmr = calculateBMR();
         if (activityLevel == 0) {
-            return (int) (bmr * 1.2); // Not Active
+            return (int) (bmr * 1.1); // Not Active
         } else if (activityLevel == 1) {
-            return (int) (bmr * 1.375); // Lightly Active
+            return (int) (bmr * 1.275); // Lightly Active
         } else if (activityLevel == 2) {
-            return (int) (bmr * 1.55); // Moderately Active
+            return (int) (bmr * 1.35); // Moderately Active
         } else if (activityLevel == 3) {
-            return (int) (bmr * 1.725); // Very Active
+            return (int) (bmr * 1.4); // Very Active
         } else if (activityLevel == 4) {
-            return (int) (bmr * 1.9); // Extra Active
+            return (int) (bmr * 1.6); // Extra Active
         } else if (activityLevel == 5) {
-            return (int) (bmr * 2.0); // Extremely Active
+            return (int) (bmr * 1.8); // Extremely Active
         } else {
             throw new IllegalArgumentException("Invalid activity level: " + activityLevel);
         }

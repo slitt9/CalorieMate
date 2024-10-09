@@ -78,12 +78,12 @@ public class UserTest {
 
     @Test
     void testCalculateMaintenanceCalories() {
-        assertEquals(1477, femaleUser0.calculateMaintenanceCalories());
-        assertEquals(2275, maleUser1.calculateMaintenanceCalories());
-        assertEquals(2593, maleUser2.calculateMaintenanceCalories());
-        assertEquals(3048, maleUser3.calculateMaintenanceCalories());
-        assertEquals(3252, maleUser4.calculateMaintenanceCalories());
-        assertEquals(2522, femaleUser5.calculateMaintenanceCalories());
+        assertEquals(1354, femaleUser0.calculateMaintenanceCalories());
+        assertEquals(2110, maleUser1.calculateMaintenanceCalories());
+        assertEquals(2258, maleUser2.calculateMaintenanceCalories());
+        assertEquals(2473, maleUser3.calculateMaintenanceCalories());
+        assertEquals(2739, maleUser4.calculateMaintenanceCalories());
+        assertEquals(2269, femaleUser5.calculateMaintenanceCalories());
     }
 
     @Test

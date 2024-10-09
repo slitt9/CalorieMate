@@ -109,12 +109,28 @@ public class MealTest {
     }
 
     @Test
+    void testDailyLogMealType() {
+        Meal dailyLog = new Meal("daily log");
+        assertEquals("daily log", dailyLog.getMealType());
+        assertEquals(0.0, dailyLog.getTotalCalories());
+        assertTrue(dailyLog.getFoodItems().isEmpty());
+    }
+
+    // New test for removing a non-existent food item
+    @Test
     void testRemoveNonExistentFoodItem() {
-        FoodItem orange = new FoodItem("Orange", 62, 1.0);
+        FoodItem nonExistentItem = new FoodItem("Non-Existent", 100, 1.0);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            lunch.removeFoodItem(orange); // Not in the meal
+            breakfast.removeFoodItem(nonExistentItem);
         });
         assertEquals("Food item not found in the meal", exception.getMessage());
     }
 
+    // New test for contains method
+    @Test
+    void testContainsFoodItem() {
+        breakfast.addFoodItem(apple);
+        assertTrue(breakfast.getFoodItems().contains(apple));
+        assertFalse(breakfast.getFoodItems().contains(banana));
+    }
 }
