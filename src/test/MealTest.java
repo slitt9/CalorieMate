@@ -9,6 +9,8 @@ public class MealTest {
 
     private Meal breakfast;
     private Meal lunch;
+    private Meal dinner;
+    private Meal snack;
     private FoodItem apple;
     private FoodItem banana;
 
@@ -16,6 +18,8 @@ public class MealTest {
     void runBefore() {
         breakfast = new Meal("breakfast");
         lunch = new Meal("lunch");
+        dinner = new Meal("dinner");
+        snack = new Meal("snack");
         apple = new FoodItem("Apple", 95, 1.0);
         banana = new FoodItem("Banana", 105, 1.0);
     }
@@ -56,12 +60,61 @@ public class MealTest {
     }
 
     @Test
-    void testCalculateTotalCalories() {
-        breakfast.addFoodItem(apple);
-        breakfast.addFoodItem(banana);
-        assertEquals(200, breakfast.calculateTotalCalories());
-
-        lunch.addFoodItem(banana);
-        assertEquals(105, lunch.calculateTotalCalories());
+    void testValidMealType() {
+        Meal breakfast = new Meal("breakfast");
+        assertEquals("breakfast", breakfast.getMealType());
     }
+
+    @Test
+    void testInvalidMealType() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Meal("brunch"); // Invalid meal type
+        });
+        assertEquals("Invalid meal type: brunch", exception.getMessage());
+    }
+
+    @Test
+    void testAddValidFoodItem() {
+        FoodItem apple = new FoodItem("Apple", 95, 1.0);
+        breakfast.addFoodItem(apple);
+        assertTrue(breakfast.getFoodItems().contains(apple));
+        assertEquals(95, breakfast.calculateTotalCalories());
+    }
+
+    @Test
+    void testAddNullFoodItem() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            lunch.addFoodItem(null);
+        });
+        assertEquals("Food item cannot be null", exception.getMessage());
+    }
+
+    @Test
+    void testCalculateTotalCalories() {
+        dinner.addFoodItem(apple);
+        dinner.addFoodItem(banana);
+        assertEquals(200, dinner.calculateTotalCalories());
+
+        snack.addFoodItem(banana);
+        assertEquals(105, snack.calculateTotalCalories());
+    }
+
+    @Test
+    void testRemoveValidFoodItem() {
+        FoodItem apple = new FoodItem("Apple", 95, 1.0);
+        breakfast.addFoodItem(apple);
+        breakfast.removeFoodItem(apple);
+        assertFalse(breakfast.getFoodItems().contains(apple));
+        assertEquals(0, breakfast.calculateTotalCalories());
+    }
+
+    @Test
+    void testRemoveNonExistentFoodItem() {
+        FoodItem orange = new FoodItem("Orange", 62, 1.0);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            lunch.removeFoodItem(orange); // Not in the meal
+        });
+        assertEquals("Food item not found in the meal", exception.getMessage());
+    }
+
 }

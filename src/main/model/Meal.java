@@ -8,11 +8,16 @@ public class Meal {
     private String mealType; // Type of the meal (e.g., breakfast, lunch, dinner, snack)
     private double totalCalories; // Total calories of the meal
 
-    // REQUIRES: mealType must be a non-null string
+    // REQUIRES: mealType must be one of "breakfast", "lunch", "dinner", or "snack"
     // EFFECTS: constructs a Meal with the specified meal type and an empty list of
     // food items
     public Meal(String mealType) {
-        this.mealType = mealType;
+        if (mealType.equalsIgnoreCase("breakfast") || mealType.equalsIgnoreCase("lunch")
+                || mealType.equalsIgnoreCase("dinner") || mealType.equalsIgnoreCase("snack")) {
+            this.mealType = mealType;
+        } else {
+            throw new IllegalArgumentException("Invalid meal type: " + mealType);
+        }
         this.foodItems = new ArrayList<>();
         this.totalCalories = 0.0;
     }
@@ -22,7 +27,11 @@ public class Meal {
     // EFFECTS: adds the specified FoodItem to the meal, updates totalCalories and
     // totalPortionSize
     public void addFoodItem(FoodItem foodItem) {
-        // stub
+        if (foodItem == null) {
+            throw new IllegalArgumentException("Food item cannot be null");
+        }
+        foodItems.add(foodItem);
+        totalCalories += foodItem.calculateTotalCalories();
     }
 
     // REQUIRES: foodItem must be in the list of food items
@@ -30,25 +39,30 @@ public class Meal {
     // EFFECTS: removes the specified FoodItem from the meal and updates
     // totalCalories and totalPortionSize
     public void removeFoodItem(FoodItem foodItem) {
-        // stub
+        if (foodItems.contains(foodItem)) {
+            foodItems.remove(foodItem);
+            totalCalories -= foodItem.calculateTotalCalories();
+        } else {
+            throw new IllegalArgumentException("Food item not found in the meal");
+        }
     }
 
     // EFFECTS: returns the total calories for the meal by summing the calories of
     // all FoodItem objects in the meal
     public double calculateTotalCalories() {
-        return 0.0; // stub
+        return totalCalories;
     }
 
     public List<FoodItem> getFoodItems() {
-        return null; // stub
+        return foodItems;
     }
 
     public String getMealType() {
-        return ""; // stub
+        return mealType;
     }
 
     public double getTotalCalories() {
-        return 0.0; // stub
+        return totalCalories;
     }
 
 }

@@ -1,5 +1,4 @@
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,22 +30,22 @@ public class FoodItemTest {
         assertEquals("Mango", foodItem.getFoodName());
 
     }
+
     @Test
     void testSetCaloriesPerPortion() {
         foodItem.setCaloriesPerPortion(200);
         assertEquals(200, foodItem.getCaloriesPerPortion());
     }
 
-    @Test 
+    @Test
     void testSetPortionSize() {
         foodItem.setPortionSize(2);
         assertEquals(2, foodItem.getPortionSize());
     }
-    
+
     @Test
     void testCalculateTotalCalories() {
         assertEquals(150, foodItem.calculateTotalCalories());
     }
-
 
 }
