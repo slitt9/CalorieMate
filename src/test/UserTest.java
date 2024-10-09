@@ -7,66 +7,94 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
 
-    private User user;
+    private User femaleUser0;
+    private User maleUser1;
+    private User maleUser2;
+    private User maleUser3;
+    private User maleUser4;
+    private User femaleUser5;
 
     @BeforeEach
     void runBefore() {
-        user = new User("John", 25, "male", 180.0, 75.0, 2);
+        femaleUser0 = new User("Jill", 19, "female", 150.0, 55.0, 0);
+        maleUser1 = new User("Bill", 30, "male", 160.0, 80.0, 1);
+        maleUser2 = new User("John", 25, "male", 175.0, 70.0, 2);
+        maleUser3 = new User("Steven", 45, "male", 182.0, 85.0, 3);
+        maleUser4 = new User("John", 21, "male", 170.0, 75.0, 4);
+        femaleUser5 = new User("Stacy", 33, "female", 150.0, 65.0, 5);
     }
 
     @Test
     void testConstructor() {
-        assertEquals("John", user.getName());
-        assertEquals(25, user.getAge());
-        assertEquals("male", user.getSex());
-        assertEquals(175.0, user.getHeight());
-        assertEquals(70.0, user.getWeight());
-        assertEquals(2, user.getActivityLevel());
+        assertEquals("John", maleUser2.getName());
+        assertEquals(25, maleUser2.getAge());
+        assertEquals("male", maleUser2.getSex());
+        assertEquals(175.0, maleUser2.getHeight());
+        assertEquals(70.0, maleUser2.getWeight());
+        assertEquals(2, maleUser2.getActivityLevel());
     }
 
     @Test
     void testSetName() {
-        user.setName("Jane");
-        assertEquals("Jane", user.getName());
+        maleUser2.setName("Jane");
+        assertEquals("Jane", maleUser2.getName());
     }
 
     @Test
     void testSetAge() {
-        user.setAge(30);
-        assertEquals(30, user.getAge());
+        maleUser2.setAge(30);
+        assertEquals(30, maleUser2.getAge());
     }
 
     @Test
     void testSetSex() {
-        user.setSex("female");
-        assertEquals("female", user.getSex());
+        maleUser2.setSex("female");
+        assertEquals("female", maleUser2.getSex());
     }
 
     @Test
     void testSetHeight() {
-        user.setHeight(165.0);
-        assertEquals(165.0, user.getHeight());
+        maleUser2.setHeight(165.0);
+        assertEquals(165.0, maleUser2.getHeight());
     }
 
     @Test
     void testSetWeight() {
-        user.setWeight(70.0);
-        assertEquals(70.0, user.getWeight());
+        maleUser2.setWeight(65.0);
+        assertEquals(65.0, maleUser2.getWeight());
     }
 
     @Test
     void testSetActivityLevel() {
-        user.setActivityLevel(3);
-        assertEquals(3, user.getActivityLevel());
+        maleUser2.setActivityLevel(3);
+        assertEquals(3, maleUser2.getActivityLevel());
     }
 
     @Test
     void testCalculateBMR() {
-        assertEquals(1673, user.calculateBMR());
+        assertEquals(1231, femaleUser0.calculateBMR());
+        assertEquals(1673, maleUser2.calculateBMR());
     }
 
     @Test
     void testCalculateMaintenanceCalories() {
-        assertEquals(2538, user.calculateMaintenanceCalories()); 
+        assertEquals(1477, femaleUser0.calculateMaintenanceCalories());
+        assertEquals(2275, maleUser1.calculateMaintenanceCalories());
+        assertEquals(2593, maleUser2.calculateMaintenanceCalories());
+        assertEquals(3048, maleUser3.calculateMaintenanceCalories());
+        assertEquals(3252, maleUser4.calculateMaintenanceCalories());
+        assertEquals(2522, femaleUser5.calculateMaintenanceCalories());
+    }
+
+    @Test
+    void testInvalidActivityLevel() {
+        User maleUser6 = new User("Jacob", 33, "male", 165.0, 99.0, 6); // activity level 6
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            maleUser6.calculateMaintenanceCalories();
+        });
+
+        String expectedMessage = "Invalid activity level: 6";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
