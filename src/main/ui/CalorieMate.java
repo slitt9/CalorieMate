@@ -81,7 +81,7 @@ public class CalorieMate {
 
         System.out.print("Enter your activity level (0-5): ");
         int activityLevel = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine();
 
         user = new User(name, age, sex, height, weight, activityLevel);
 
@@ -92,7 +92,7 @@ public class CalorieMate {
         // Set target calories
         System.out.print("Set your target calories for the day: ");
         this.targetCalories = scanner.nextInt(); // Save the target calories to the class variable
-        scanner.nextLine(); // consume newline
+        scanner.nextLine();
         System.out.println("Your target calories for the day are set to: " + this.targetCalories);
     }
 
@@ -113,12 +113,12 @@ public class CalorieMate {
 
         System.out.println("Enter calories for the item: ");
         double calories = scanner.nextDouble();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine();
 
         // Ask for portion size
         System.out.println("Enter portion size: ");
         double portionSize = scanner.nextDouble();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine();
 
         // Ask for meal type
         String mealType;
@@ -184,17 +184,18 @@ public class CalorieMate {
 
     // Displays remaining calories based on user's target
     public void calculateRemainingCalories() {
-        double totalCaloriesConsumed = dailyLog.calculateTotalCalories();
-        double remainingCalories = targetCalories - totalCaloriesConsumed; // Use stored targetCalories
+        // Display the target calorie goal for the day
+        System.out.println("Calorie goal for the day: " + targetCalories);
 
+        double totalCaloriesConsumed = dailyLog.calculateTotalCalories();
         System.out.println("Total calories consumed: " + totalCaloriesConsumed);
-        System.out.println("Remaining calories for the day: " + remainingCalories);
+
+        double remainingCalories = targetCalories - totalCaloriesConsumed;
 
         if (remainingCalories < 0) {
-            System.out.println(
-                    "Warning: You have exceeded your calorie goal by " + Math.abs(remainingCalories) + " calories.");
+            System.out.println("You have exceeded your calorie goal by " + Math.abs(remainingCalories) + " calories.");
         } else {
-            System.out.println("Remaining Calories: " + remainingCalories);
+            System.out.println("Remaining calories for the day: " + remainingCalories);
         }
     }
 
@@ -219,8 +220,4 @@ public class CalorieMate {
         }
     }
 
-    public static void main(String[] args) {
-        CalorieMate app = new CalorieMate();
-        app.run();
-    }
 }
