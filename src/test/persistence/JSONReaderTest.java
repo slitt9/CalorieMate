@@ -11,10 +11,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JSONReaderTest extends JSONTest {
-    private static final String EMPTY_MEAL_FILE = "./data/testReaderEmptyMeal.json"; 
-    private static final String GENERAL_MEAL_FILE = "./data/testReaderGeneralMeal.json"; 
-    private static final String USER_FILE = "./data/testReaderGeneralUser.json"; 
-    private static final String NON_EXISTENT_FILE = "./data/noSuchFile.json";
+    private static final String EMPTY_MEAL_FILE = "./ProjectStarter/data/testReaderEmptyMeal.json"; 
+    private static final String GENERAL_MEAL_FILE = "./ProjectStarter/data/testReaderGeneralMeal.json"; 
+    private static final String USER_FILE = "./ProjectStarter/data/testReaderGeneralUser.json"; 
+    private static final String NON_EXISTENT_FILE = "./ProjectStarter/data/noSuchFile.json";
 
     @Test
     void testReaderNonExistentFile() {
@@ -32,7 +32,7 @@ class JSONReaderTest extends JSONTest {
         JSONReader reader = new JSONReader(EMPTY_MEAL_FILE);
         try {
             Meal meal = reader.readMeal();
-            assertEquals("daily log", meal.getMealType());
+            assertEquals("Breakfast", meal.getMealType());
             assertEquals(0, meal.getFoodItems().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
