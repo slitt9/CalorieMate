@@ -2,6 +2,7 @@ package persistence;
 
 import model.FoodItem;
 import model.Meal;
+import model.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,9 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
-// Represents a reader that reads Meal and FoodItem data from JSON data stored in a file
+// Represents a reader that reads Meal, FoodItem, and User data from JSON data stored in a file
 public class JSONReader {
     private String source;
 
@@ -34,9 +34,15 @@ public class JSONReader {
         return new ArrayList<>(); // stub
     }
 
+    // EFFECTS: reads User from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    public User readUser() throws IOException {
+        return new User("stubName", 0, "male", 0.0, 0.0, 0); // stub
+    }
+
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
-        return ""; // stub
+        return new String(Files.readAllBytes(Paths.get(source)), StandardCharsets.UTF_8); // stub
     }
 
     // EFFECTS: parses a Meal from JSON object and returns it
@@ -47,6 +53,11 @@ public class JSONReader {
     // EFFECTS: parses FoodItems from JSON object and returns them as a list
     private List<FoodItem> parseFoodItems(JSONObject jsonObject) {
         return new ArrayList<>(); // stub
+    }
+
+    // EFFECTS: parses a User from JSON object and returns it
+    private User parseUser(JSONObject jsonObject) {
+        return new User("stubName", 0, "male", 0.0, 0.0, 0); // stub
     }
 
     // MODIFIES: meal
