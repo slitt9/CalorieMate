@@ -1,0 +1,15 @@
+{
+    "mealType": "Breakfast",
+    "foodItems": [
+        {
+            "foodName": "Oatmeal",
+            "caloriesPerPortion": 150,
+            "portionSize": 1.0
+        },
+        {
+            "foodName": "Banana",
+            "caloriesPerPortion": 105,
+            "portionSize": 1.0
+        }
+    ]
+}

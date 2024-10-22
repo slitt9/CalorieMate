@@ -1,0 +1,8 @@
+{
+    "name": "John Doe",
+    "age": 25,
+    "sex": "male",
+    "height": 180.0,
+    "weight": 75.0,
+    "activityLevel": 3
+}
