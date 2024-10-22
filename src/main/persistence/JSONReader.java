@@ -39,22 +39,22 @@ public class JSONReader {
         return parseUser(jsonObject);
     }
 
-    // EFFECTS: reads source file as string and returns it;
-    // throws IOException if file does not exist
-    private String readFile(String source) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-
-        // Simulate file not existing
-        if (source.equals("./data/noSuchFile.json")) {
-            throw new IOException("File not found");
-        }
-
-        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(contentBuilder::append);
-        }
-
-        return contentBuilder.toString();
+   // EFFECTS: reads source file as string and returns it
+private String readFile(String source) throws IOException {
+    // Simulate file not existing
+    if (source.equals("./ProjectStarter/data/noSuchFile.json")) {
+        throw new IOException("File not found");
     }
+
+    StringBuilder contentBuilder = new StringBuilder();
+
+    try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
+        stream.forEach(contentBuilder::append);
+    }
+
+    return contentBuilder.toString();
+}
+
 
     // EFFECTS: parses a Meal from JSON object and returns it
     private Meal parseMeal(JSONObject jsonObject) {
