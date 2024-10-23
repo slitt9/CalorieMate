@@ -3,8 +3,7 @@ package model;
 // Represents a food item, with its name, calories per portion, and size of the portion.
 public class FoodItem {
     public String foodName; // name of food
-    public int caloriesPerPortion; // calories per portion of food
-    public double portionSize; // number of portions being consumed
+    public int calories; // calories per portion of food
 
     /*
      * REQUIRES: foodName has a non-zero length;
@@ -15,10 +14,9 @@ public class FoodItem {
      * portionSize is set to the given portionSize.
      */
 
-    public FoodItem(String foodName, int caloriesPerPortion, double portionSize) {
+    public FoodItem(String foodName, int calories) {
         this.foodName = foodName;
-        this.caloriesPerPortion = caloriesPerPortion;
-        this.portionSize = portionSize;
+        this.calories = calories;
     }
 
     public void setFoodName(String foodName) {
@@ -30,28 +28,12 @@ public class FoodItem {
         return foodName;
     }
 
-    public void setCaloriesPerPortion(int caloriesPerPortion) {
-        this.caloriesPerPortion = caloriesPerPortion;
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
-    public int getCaloriesPerPortion() {
-        return caloriesPerPortion;
-    }
-
-    public void setPortionSize(double portionSize) {
-        this.portionSize = portionSize;
-    }
-
-    public double getPortionSize() {
-        return portionSize;
-    }
-
-    /*
-     * EFFECTS: calculates and returns the total calories based on the portion size
-     * and calories per portion
-     */
-    public int calculateTotalCalories() {
-        return (int) (caloriesPerPortion * portionSize);
+    public int getCalories() {
+        return calories;
     }
 
 }

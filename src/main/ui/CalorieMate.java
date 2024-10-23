@@ -1,112 +1,67 @@
 package ui;
 
-import model.Meal;
+import model.Meals;
 import model.FoodItem;
-import model.User;
 
 import java.util.Scanner;
 
 public class CalorieMate {
-    private Meal dailyLog;
-    private User user;
+    private Meals meals;
     private Scanner scanner;
-    private Meal breakfast;
-    private Meal lunch;
-    private Meal dinner;
-    private Meal snack;
-    private int targetCalories;
 
-    // Constructor to initialize daily log and user
+    // Constructor to initialize daily log
     public CalorieMate() {
-        this.dailyLog = new Meal("Daily Log");
+        meals = new Meals();
         this.scanner = new Scanner(System.in);
-        this.dailyLog = new Meal("Daily Log");
-        this.breakfast = new Meal("Breakfast");
-        this.lunch = new Meal("Lunch");
-        this.dinner = new Meal("Dinner");
-        this.snack = new Meal("Snack");
-        this.scanner = new Scanner(System.in);
+        run();
     }
 
     // Run the console-based application
     public void run() {
-        getUserInfo(); // Get user information before showing the menu
         boolean keepRunning = true;
         while (keepRunning) {
             printMenu();
-            String command = scanner.nextLine().toLowerCase();
-
-            switch (command) {
-                case "1":
-                    addFoodItem();
-                    break;
-                case "2":
-                    viewFoodItems();
-                    break;
-                case "3":
-                    calculateRemainingCalories();
-                    break;
-                case "4":
-                    removeFoodItem();
-                    break;
-                case "5":
-                    keepRunning = false;
-                    System.out.println("Exiting application. Goodbye!");
-                    break;
-                default:
-                    System.out.println("Invalid command. Please choose a valid option.");
-            }
+            String command = scanner.nextLine();
+            keepRunning = handleUserChoice(command);
         }
-    }
-
-    // Method to get user information
-    private void getUserInfo() {
-        System.out.println(
-                "Welcome to CalorieMate! We specialize in assisting you to reach your fitness and health goals. Please enter your information.");
-
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Enter your age: ");
-        int age = scanner.nextInt();
-
-        System.out.print("Enter your sex (male/female): ");
-        String sex = scanner.next();
-
-        System.out.print("Enter your height (cm): ");
-        double height = scanner.nextDouble();
-
-        System.out.print("Enter your weight (kg): ");
-        double weight = scanner.nextDouble();
-
-        System.out.print("Enter your activity level (0-5): ");
-        int activityLevel = scanner.nextInt();
-        scanner.nextLine();
-
-        user = new User(name, age, sex, height, weight, activityLevel);
-
-        // Calculate maintenance calories and display
-        int maintenanceCalories = user.calculateMaintenanceCalories();
-        System.out.println("Your estimated maintenance calories are: " + maintenanceCalories);
-
-        // Set target calories
-        System.out.print("Set your target calories for the day: ");
-        this.targetCalories = scanner.nextInt(); // Save the target calories to the class variable
-        scanner.nextLine();
-        System.out.println("Your target calories for the day are set to: " + this.targetCalories);
     }
 
     // Prints the available actions to the user
     private void printMenu() {
         System.out.println("\nChoose an option:");
-        System.out.println("1 - Add a food item");
-        System.out.println("2 - View logged food items");
-        System.out.println("3 - View remaining calories for the day");
+        System.out.println("1 - Add a food item to todays list");
+        System.out.println("2 - Set a calorie goal");
+        System.out.println("3 - View calorie goal and todays list");
         System.out.println("4 - Remove a food item");
         System.out.println("5 - Exit");
+        System.out.println("Enter your choice:");
     }
 
-    // Allows user to add a food item
+    // MODIFIES: this
+    // EFFECTS: Calls on the method which corresponds with the user's choice
+    private boolean handleUserChoice(String command) {
+        switch (command) {
+            case "1":
+                addFoodItem(); // Add a food item
+                break;
+            case "2":
+                setCalorieGoal(); // Set the calorie goal
+                break;
+            case "3":
+                viewFoodAndGoal(); // View logged foods and calorie goal
+                break;
+            case "4":
+                removeFood(); // Remove a food item
+            case "5":
+                return false;
+        }
+        return true;
+    }
+
+    // REQUIRES: Name must have a non-zero length
+    // Calories must be >= 0
+    // MODIFIES: modifies the eatenMeals list in Meals
+    // EFFECTS: adds a given food to the eatenMeals list
     public void addFoodItem() {
         System.out.println("Enter food item name: ");
         String foodName = scanner.nextLine();
@@ -115,109 +70,44 @@ public class CalorieMate {
         double calories = scanner.nextDouble();
         scanner.nextLine();
 
-        // Ask for portion size
-        System.out.println("Enter portion size: ");
-        double portionSize = scanner.nextDouble();
-        scanner.nextLine();
+        // Create FoodItem
+        FoodItem foodItem = new FoodItem(foodName, (int) calories);
+        meals.addFoodItem(foodItem);
+        System.out.println(foodName + " has been added to your list");
+    }
 
-        // Ask for meal type
-        String mealType;
-        while (true) {
-            System.out.println("Enter the meal type (breakfast, lunch, dinner, snack): ");
-            mealType = scanner.nextLine().toLowerCase();
+    // REQUIRES: Calorie goal must be >0
+    // MODIFIES: modifies the eatenMeals list in Meals
+    // EFFECTS: adds a given food to the eatenMeals list
+    private void setCalorieGoal() {
+        System.out.println("Enter your calorie goal for the day: ");
+        double cGoal = Double.parseDouble(scanner.nextLine());
+        meals.setCalorieGoal(cGoal);
+        System.out.println("Your calorie goal has been set to: " + cGoal);
+    }
 
-            if (mealType.equals("breakfast") || mealType.equals("lunch") || mealType.equals("dinner")
-                    || mealType.equals("snack")) {
-                break;
-            } else {
-                System.out.println("Invalid meal type. Please enter breakfast, lunch, dinner, or snack.");
+    // EFFECTS: prints out the list of foods added to the eatenMeals list and calorie goal
+    private void viewFoodAndGoal() {
+        System.out.println("\nFood you've eaten today:");
+        if(meals.getEatenMeals().isEmpty()) {
+            System.out.println("You haven't added any foods yet.");
+        } else {
+            for (FoodItem foodItem : meals.getEatenMeals()) {
+                System.out.println("- " + foodItem.getFoodName() + " : " + foodItem.getCalories()
+                + " Calories");
             }
         }
 
-        // Create FoodItem and add to the appropriate meal
-        FoodItem foodItem = new FoodItem(foodName, (int) calories, portionSize);
-        switch (mealType) {
-            case "breakfast":
-                breakfast.addFoodItem(foodItem);
-                break;
-            case "lunch":
-                lunch.addFoodItem(foodItem);
-                break;
-            case "dinner":
-                dinner.addFoodItem(foodItem);
-                break;
-            case "snack":
-                snack.addFoodItem(foodItem);
-                break;
-        }
-        dailyLog.addFoodItem(foodItem);
+        System.out.println("Calorie goal: " + meals.getCalorieGoal());
     }
 
-    // Displays the list of logged food items
-    public void viewFoodItems() {
-        System.out.println("Food Log:");
-
-        System.out.println("\nBreakfast:");
-        for (FoodItem item : breakfast.getFoodItems()) {
-            System.out.println("- " + item.getFoodName() + ": " + item.calculateTotalCalories()
-                    + " calories (Portion Size: " + item.getPortionSize() + ")");
-        }
-
-        System.out.println("\nLunch:");
-        for (FoodItem item : lunch.getFoodItems()) {
-            System.out.println("- " + item.getFoodName() + ": " + item.calculateTotalCalories()
-                    + " calories (Portion Size: " + item.getPortionSize() + ")");
-        }
-
-        System.out.println("\nDinner:");
-        for (FoodItem item : dinner.getFoodItems()) {
-            System.out.println("- " + item.getFoodName() + ": " + item.calculateTotalCalories()
-                    + " calories (Portion Size: " + item.getPortionSize() + ")");
-        }
-
-        System.out.println("\nSnacks:");
-        for (FoodItem item : snack.getFoodItems()) {
-            System.out.println("- " + item.getFoodName() + ": " + item.calculateTotalCalories()
-                    + " calories (Portion Size: " + item.getPortionSize() + ")");
-        }
+    // REQUIRES: String name must be the name of a food in the list
+    // MODIFIES: This
+    // EFFECTS: Removes a given food from the eatenMeals list in meals
+    private void removeFood() {
+        System.out.println("Enter the name of the food you want to remove: ");
+        String name = scanner.nextLine();
+        meals.removeFoodItem(name);
+        System.out.println(name + " has been removed from your list");
     }
-
-    // Displays remaining calories based on user's target
-    public void calculateRemainingCalories() {
-        // Display the target calorie goal for the day
-        System.out.println("Calorie goal for the day: " + targetCalories);
-
-        double totalCaloriesConsumed = dailyLog.calculateTotalCalories();
-        System.out.println("Total calories consumed: " + totalCaloriesConsumed);
-
-        double remainingCalories = targetCalories - totalCaloriesConsumed;
-
-        if (remainingCalories < 0) {
-            System.out.println("You have exceeded your calorie goal by " + Math.abs(remainingCalories) + " calories.");
-        } else {
-            System.out.println("Remaining calories for the day: " + remainingCalories);
-        }
-    }
-
-    // Allows user to remove a food item
-    public void removeFoodItem() {
-        System.out.println("Enter the name of the food item to remove: ");
-        String foodName = scanner.nextLine();
-        FoodItem itemToRemove = null;
-
-        for (FoodItem item : dailyLog.getFoodItems()) {
-            if (item.getFoodName().equalsIgnoreCase(foodName)) {
-                itemToRemove = item;
-                break;
-            }
-        }
-
-        if (itemToRemove != null) {
-            dailyLog.removeFoodItem(itemToRemove);
-            System.out.println("Removed " + foodName + " from your daily log.");
-        } else {
-            System.out.println("Food item not found in your daily log.");
-        }
-    }
-
 }

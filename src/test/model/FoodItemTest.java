@@ -5,46 +5,54 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FoodItemTest {
-
+class FoodItemTest {
     private FoodItem foodItem;
 
     @BeforeEach
-    void runBefore() {
-        foodItem = new FoodItem("Banana", 100, 1.5);
-
+    void setUp() {
+        // Initialize a FoodItem object before each test
+        foodItem = new FoodItem("Apple", 95);
     }
 
     @Test
-    void testConstructor() {
-        assertEquals("Banana", foodItem.getFoodName());
-        assertEquals(100, foodItem.getCaloriesPerPortion());
-        assertEquals(1.5, foodItem.getPortionSize());
-
+    void testConstructorValidInput() {
+        assertEquals("Apple", foodItem.getFoodName());
+        assertEquals(95, foodItem.getCalories());
     }
 
     @Test
     void testSetFoodName() {
-        foodItem.setFoodName("Mango");
-        assertEquals("Mango", foodItem.getFoodName());
-
+        foodItem.setFoodName("Banana");
+        assertEquals("Banana", foodItem.getFoodName());
     }
 
     @Test
-    void testSetCaloriesPerPortion() {
-        foodItem.setCaloriesPerPortion(200);
-        assertEquals(200, foodItem.getCaloriesPerPortion());
+    void testGetFoodName() {
+        assertEquals("Apple", foodItem.getFoodName());
     }
 
     @Test
-    void testSetPortionSize() {
-        foodItem.setPortionSize(2);
-        assertEquals(2, foodItem.getPortionSize());
+    void testSetCalories() {
+        foodItem.setCalories(105);
+        assertEquals(105, foodItem.getCalories());
     }
 
     @Test
-    void testCalculateTotalCalories() {
-        assertEquals(150, foodItem.calculateTotalCalories());
+    void testGetCalories() {
+        assertEquals(95, foodItem.getCalories());
     }
 
+    @Test
+    void testSetFoodNameToEmptyString() {
+        // Setting food name to an empty string should not throw an exception
+        foodItem.setFoodName("");
+        assertEquals("", foodItem.getFoodName());
+    }
+
+    @Test
+    void testSetCaloriesToNegative() {
+        // Setting calories to a negative number should not throw an exception
+        foodItem.setCalories(-10);
+        assertEquals(-10, foodItem.getCalories());
+    }
 }
