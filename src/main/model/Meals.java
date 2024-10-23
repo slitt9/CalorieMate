@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.FoodItem;
 
 public class Meals {
     private List<FoodItem> eatenMeals; // List of food items eaten today
