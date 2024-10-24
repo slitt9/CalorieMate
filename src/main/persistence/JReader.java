@@ -21,7 +21,7 @@ public class JReader {
     }
 
     // EFFECTS: reads Meals from file and returns it;
-    // throws IOExcetion if an error occurs reading data from file
+    // throws IOException if an error occurs reading data from file
     public Meals read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);

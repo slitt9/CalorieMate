@@ -63,7 +63,7 @@ public class Meals implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns things in this eatenMeals list as a JSON array
     private JSONArray foodItemToJson() {
         JSONArray jsonArray = new JSONArray();
 

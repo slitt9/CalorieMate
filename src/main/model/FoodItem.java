@@ -3,10 +3,10 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-// Represents a food item, with its name, calories per portion, and size of the portion.
+// Represents a food item, with its name and calories
 public class FoodItem implements Writable {
     private String foodName; // name of food
-    private int calories; // calories per portion of food
+    private int calories; // calories 
 
     /*
      * REQUIRES: foodName has a non-zero length;

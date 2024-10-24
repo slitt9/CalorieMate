@@ -69,13 +69,13 @@ public void run() {
                 break;
             case "4":
                 removeFood(); // Remove a food item
-                break; // Add this break
+                break;
             case "5":
                 saveData(); // Save the user's data
-                break; // Add this break
+                break;
             case "6":
                 loadData(); // Load the user's data
-                break; // Add this break
+                break; 
             case "7":
                 return false;
         }
