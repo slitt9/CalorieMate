@@ -1,0 +1,7 @@
+{
+    "eatenMeals": [{
+        "foodName": "Apple",
+        "calories": 50
+    }],
+    "calorieGoal": 1500
+}

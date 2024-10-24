@@ -1,0 +1,18 @@
+{
+    "calorieGoal": 2000,
+    "eatenMeals": [
+      {
+        "foodName": "Banana",
+        "calories": 105
+      },
+      {
+        "foodName": "Apple",
+        "calories": 95
+      },
+      {
+        "foodName": "Orange",
+        "calories": 62
+      }
+    ]
+  }
+  
