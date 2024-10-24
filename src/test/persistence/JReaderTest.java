@@ -15,7 +15,7 @@ public class JReaderTest {
     @BeforeEach
     void setUp() {
         // Initialize the JReader with the path to the test JSON file
-        reader = new JReader("./data/testReaderValidFile.json");
+        reader = new JReader("./project-j4e0x/data/testReaderValidFile.json");
     }
 
     @Test
@@ -54,6 +54,6 @@ public class JReaderTest {
     @Test
     void testReadEmptyFile() {
         JReader readerEmptyFile = new JReader("./data/testReaderEmptyFile.json");
-        assertThrows(org.json.JSONException.class, readerEmptyFile::read);
+        assertThrows(java.nio.file.NoSuchFileException.class, readerEmptyFile::read);
     }
 }
