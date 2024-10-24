@@ -3,9 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Meals {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
+public class Meals implements Writable {
     private List<FoodItem> eatenMeals; // List of food items eaten today
-    private double calorieGoal; // Calorie goal of the day
+    private int calorieGoal; // Calorie goal of the day
 
     // EFFECTS: constructs a Meal with an empty list of
     // food items and calorieGoal
@@ -23,7 +28,7 @@ public class Meals {
 
     // REQUIRES: foodItem must be in the list of food items
     // MODIFIES: this
-    // EFFECTS: removes the specified FoodItem from the meal and updates
+    // EFFECTS: removes the specified FoodItem from the meal and updates eatenMeals
     public void removeFoodItem(String foodName) {
         boolean removed = false;
         for (FoodItem item : eatenMeals) {
@@ -38,7 +43,7 @@ public class Meals {
         }
     }
 
-    public void setCalorieGoal(double calorieGoal) {
+    public void setCalorieGoal(int calorieGoal) {
         this.calorieGoal = calorieGoal;
     }
 
@@ -46,8 +51,27 @@ public class Meals {
         return eatenMeals;
     }
 
-    public double getCalorieGoal() {
+    public int getCalorieGoal() {
         return calorieGoal;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("calorieGoal", calorieGoal);
+        json.put("eatenMeals", foodItemToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray foodItemToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (FoodItem f : eatenMeals) {
+            jsonArray.put(f.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

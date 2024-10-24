@@ -1,17 +1,17 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a food item, with its name, calories per portion, and size of the portion.
-public class FoodItem {
-    public String foodName; // name of food
-    public int calories; // calories per portion of food
+public class FoodItem implements Writable {
+    private String foodName; // name of food
+    private int calories; // calories per portion of food
 
     /*
      * REQUIRES: foodName has a non-zero length;
-     * caloriesPerPortion is non-negative;
-     * portionSize is greater than 0.
+     * calories is non-negative;
      * EFFECTS: foodName is set to the given foodName;
-     * caloriesPerPortion is set to the given caloriesPerPortion;
-     * portionSize is set to the given portionSize.
      */
 
     public FoodItem(String foodName, int calories) {
@@ -34,6 +34,14 @@ public class FoodItem {
 
     public int getCalories() {
         return calories;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("foodName", foodName);
+        json.put("calories", calories);
+        return json;
     }
 
 }
