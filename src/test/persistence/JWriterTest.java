@@ -22,7 +22,7 @@ class JWriterTest {
 
     @Test
     void testWriteEmptyMeals() {
-        try{
+        try {
             writer.open();
             writer.write(meal);
             writer.close();
@@ -32,14 +32,14 @@ class JWriterTest {
             Meals fullMeal = reader.read();
             assertEquals(0, fullMeal.getCalorieGoal());
             assertTrue(fullMeal.getEatenMeals().isEmpty());
-        } catch(IOException e) {
+        } catch (IOException e) {
             fail("IOException should not have been thrown");
         }
     }
 
     @Test
     void testWriterMealsWithContent() {
-        try{
+        try {
             // Setup Meals with content
             meal.setCalorieGoal(1000);
             meal.addFoodItem(new FoodItem("Apple", 50));

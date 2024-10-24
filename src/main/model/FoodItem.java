@@ -6,7 +6,7 @@ import persistence.Writable;
 // Represents a food item, with its name and calories
 public class FoodItem implements Writable {
     private String foodName; // name of food
-    private int calories; // calories 
+    private int calories; // calories
 
     /*
      * REQUIRES: foodName has a non-zero length;

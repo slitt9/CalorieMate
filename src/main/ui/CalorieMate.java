@@ -20,26 +20,23 @@ public class CalorieMate {
     public CalorieMate() {
         meals = new Meals();
         this.scanner = new Scanner(System.in);
-        jsonReader = new JReader(JSON_STORE); 
-        jsonWriter = new JWriter(JSON_STORE); 
+        jsonReader = new JReader(JSON_STORE);
+        jsonWriter = new JWriter(JSON_STORE);
         run();
     }
-    
 
     // Run the console-based application
-// Run the console-based application
-public void run() {
-    boolean keepRunning = true;
-    while (keepRunning) {
-        printMenu();
-        String command = scanner.nextLine();
-        keepRunning = handleUserChoice(command);
+    // Run the console-based application
+    public void run() {
+        boolean keepRunning = true;
+        while (keepRunning) {
+            printMenu();
+            String command = scanner.nextLine();
+            keepRunning = handleUserChoice(command);
+        }
+        System.out.println("Exiting program...");
+        System.exit(0);
     }
-    System.out.println("Exiting program...");
-    System.exit(0);  
-}
-
-
 
     // Prints the available actions to the user
     private void printMenu() {
@@ -75,13 +72,12 @@ public void run() {
                 break;
             case "6":
                 loadData(); // Load the user's data
-                break; 
+                break;
             case "7":
                 return false;
         }
         return true;
     }
-    
 
     // REQUIRES: Name must have a non-zero length
     // Calories must be >= 0
@@ -92,8 +88,8 @@ public void run() {
         String foodName = scanner.nextLine();
 
         System.out.println("Enter calories for the item: ");
-        String caloriesInput = scanner.nextLine(); 
-        double calories = Double.parseDouble(caloriesInput); 
+        String caloriesInput = scanner.nextLine();
+        double calories = Double.parseDouble(caloriesInput);
 
         // Create FoodItem
         FoodItem foodItem = new FoodItem(foodName, (int) calories);
