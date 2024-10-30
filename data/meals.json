@@ -1,7 +1,7 @@
 {
     "eatenMeals": [{
-        "foodName": "Apple",
-        "calories": 50
+        "foodName": "Banana",
+        "calories": 199
     }],
-    "calorieGoal": 1500
+    "calorieGoal": 0
 }

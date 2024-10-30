@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class CalorieMate {
-    private static final String JSON_STORE = "./project-j4e0x/data/meals.json";
+    private static final String JSON_STORE = "./data/meals.json";
     private Meals meals;
     private Scanner scanner;
     private JReader jsonReader;

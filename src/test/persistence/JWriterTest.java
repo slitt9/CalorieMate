@@ -10,7 +10,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JWriterTest {
-    private static final String TEST_FILE = "./project-j4e0x/data/testWriter.json";
+    private static final String TEST_FILE = "./data/testWriter.json";
     private JWriter writer;
     private Meals meal;
 

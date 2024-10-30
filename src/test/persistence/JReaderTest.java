@@ -15,7 +15,7 @@ public class JReaderTest {
     @BeforeEach
     void setUp() {
         // Initialize the JReader with the path to the test JSON file
-        reader = new JReader("./project-j4e0x/data/testReaderValidFile.json");
+        reader = new JReader("./data/testReaderValidFile.json");
     }
 
     @Test
