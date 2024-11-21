@@ -21,5 +21,11 @@ With an extremely simple and user-friendly design, I believe my app can be used 
 - As a user, I want to be able to save the entire state of the CalorieMate application including my logged food items and calorie goals to a file, so that I can resume tracking my progress at a later time.
 - As a user, I want to be able to load the saved state of my application from a file, so that I can continue from where I left off, with all my previous data restored.
 
- 
+ # Instructions for End User
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking sort by calories, to reorder the food items, by their calorie count.
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by selecting a food you have eaten then clicking remove selected to remove the food from your list of eaten meals.
+- You can locate my visual component by running the app to see the splash screen, or by adding a calorie goal and adding a food to see the graph of your calorie goal to better track your progress.
+- You can save the state of my application by clicking the save button or clicking yes when asked whether you would like the save your data when closing the application.
+- You can reload the state of my application by clicking the load button.
 
