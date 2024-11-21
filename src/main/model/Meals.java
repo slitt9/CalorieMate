@@ -74,4 +74,22 @@ public class Meals implements Writable {
         return jsonArray;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sorts the eaten meals list by calories in descending order
+    public void sortByCaloriesDescending() {
+        eatenMeals.sort((f1, f2) -> Integer.compare(f2.getCalories(), f1.getCalories()));
+    }
+
+    // EFFECTS: Calculates total calories consumed
+    public int calculateTotalCalories() {
+        return eatenMeals.stream()
+                .mapToInt(FoodItem::getCalories)
+                .sum();
+    }
+
+    // EFFECTS: Calculates remaining calories based on goal
+    public int calculateRemainingCalories() {
+        return calorieGoal - calculateTotalCalories();
+    }
+
 }

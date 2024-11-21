@@ -26,7 +26,6 @@ public class CalorieMate {
     }
 
     // Run the console-based application
-    // Run the console-based application
     public void run() {
         boolean keepRunning = true;
         while (keepRunning) {
