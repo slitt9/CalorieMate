@@ -24,13 +24,14 @@ public class Meals implements Writable {
     // EFFECTS: adds the specified FoodItem to the meals list and logs the event
     public void addFoodItem(FoodItem foodItem) {
         eatenMeals.add(foodItem);
-        EventLog.getInstance().logEvent(new Event("Added food item: " + foodItem.getFoodName() 
+        EventLog.getInstance().logEvent(new Event("Added food item: " + foodItem.getFoodName()
                 + " (" + foodItem.getCalories() + " calories)"));
     }
 
     // REQUIRES: foodItem must be in the list of food items
     // MODIFIES: this
-    // EFFECTS: removes the specified FoodItem from the meal, updates eatenMeals, and logs the event
+    // EFFECTS: removes the specified FoodItem from the meal, updates eatenMeals,
+    // and logs the event
     public void removeFoodItem(String foodName) {
         boolean removed = false;
         for (FoodItem item : eatenMeals) {
@@ -81,7 +82,8 @@ public class Meals implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: sorts the eaten meals list by calories in descending order and logs the event
+    // EFFECTS: sorts the eaten meals list by calories in descending order and logs
+    // the event
     public void sortByCaloriesDescending() {
         eatenMeals.sort((f1, f2) -> Integer.compare(f2.getCalories(), f1.getCalories()));
         EventLog.getInstance().logEvent(new Event("Sorted meals by calories in descending order"));
