@@ -1,4 +1,3 @@
-
 # **My Personal Project**
 
 ## CalorieMate
@@ -28,4 +27,35 @@ With an extremely simple and user-friendly design, I believe my app can be used 
 - You can locate my visual component by running the app to see the splash screen, or by adding a calorie goal and adding a food to see the graph of your calorie goal to better track your progress.
 - You can save the state of my application by clicking the save button or clicking yes when asked whether you would like the save your data when closing the application.
 - You can reload the state of my application by clicking the load button.
+
+# Phase 4: Task 2
+
+When I run my application and perform the following actions:
+1. Set a calorie goal of 2000
+2. Add a banana (105 calories)
+3. Add an apple (95 calories)
+4. Sort the meals by calories
+5. Remove the apple
+6. Save and quit
+
+The following events are logged:
+```
+Wed Nov 29 14:23:45 PST 2023
+Set calorie goal to: 2000
+
+Wed Nov 29 14:23:52 PST 2023
+Added food item: Banana (105 calories)
+
+Wed Nov 29 14:24:01 PST 2023
+Added food item: Apple (95 calories)
+
+Wed Nov 29 14:24:05 PST 2023
+Sorted meals by calories in descending order
+
+Wed Nov 29 14:24:10 PST 2023
+Removed food item: Apple
+
+Wed Nov 29 14:24:15 PST 2023
+Event log cleared.
+```
 

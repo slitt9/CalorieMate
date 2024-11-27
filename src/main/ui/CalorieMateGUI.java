@@ -1,7 +1,9 @@
 package ui;
 
+import model.EventLog;
 import model.FoodItem;
 import model.Meals;
+import model.Event;
 import persistence.JReader;
 import persistence.JWriter;
 
@@ -291,9 +293,18 @@ public class CalorieMateGUI extends JFrame {
                 JOptionPane.YES_NO_CANCEL_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             saveData();
+            printEventLog();
             dispose();
         } else if (result == JOptionPane.NO_OPTION) {
+            printEventLog();
             dispose();
+        }
+    }
+
+    // EFFECTS: Prints the event log to console
+    private void printEventLog() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString() + "\n");
         }
     }
 

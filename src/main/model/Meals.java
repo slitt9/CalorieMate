@@ -21,19 +21,22 @@ public class Meals implements Writable {
 
     // REQUIRES: foodItem cannot be null
     // MODIFIES: this
-    // EFFECTS: adds the specified FoodItem to the meals list
+    // EFFECTS: adds the specified FoodItem to the meals list and logs the event
     public void addFoodItem(FoodItem foodItem) {
         eatenMeals.add(foodItem);
+        EventLog.getInstance().logEvent(new Event("Added food item: " + foodItem.getFoodName() 
+                + " (" + foodItem.getCalories() + " calories)"));
     }
 
     // REQUIRES: foodItem must be in the list of food items
     // MODIFIES: this
-    // EFFECTS: removes the specified FoodItem from the meal and updates eatenMeals
+    // EFFECTS: removes the specified FoodItem from the meal, updates eatenMeals, and logs the event
     public void removeFoodItem(String foodName) {
         boolean removed = false;
         for (FoodItem item : eatenMeals) {
             if (item.getFoodName().equals(foodName)) {
                 eatenMeals.remove(item);
+                EventLog.getInstance().logEvent(new Event("Removed food item: " + foodName));
                 removed = true;
                 break; // Exit the loop once the item is found and removed
             }
@@ -43,8 +46,11 @@ public class Meals implements Writable {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the calorie goal and logs the event
     public void setCalorieGoal(int calorieGoal) {
         this.calorieGoal = calorieGoal;
+        EventLog.getInstance().logEvent(new Event("Set calorie goal to: " + calorieGoal));
     }
 
     public List<FoodItem> getEatenMeals() {
@@ -75,9 +81,10 @@ public class Meals implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: sorts the eaten meals list by calories in descending order
+    // EFFECTS: sorts the eaten meals list by calories in descending order and logs the event
     public void sortByCaloriesDescending() {
         eatenMeals.sort((f1, f2) -> Integer.compare(f2.getCalories(), f1.getCalories()));
+        EventLog.getInstance().logEvent(new Event("Sorted meals by calories in descending order"));
     }
 
     // EFFECTS: Calculates total calories consumed
@@ -91,5 +98,4 @@ public class Meals implements Writable {
     public int calculateRemainingCalories() {
         return calorieGoal - calculateTotalCalories();
     }
-
 }

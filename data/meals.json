@@ -1,21 +1,7 @@
 {
-    "eatenMeals": [
-        {
-            "foodName": "Teriyaki",
-            "calories": 900
-        },
-        {
-            "foodName": "Apple",
-            "calories": 900
-        },
-        {
-            "foodName": "tana",
-            "calories": 679
-        },
-        {
-            "foodName": "Pear",
-            "calories": 20
-        }
-    ],
-    "calorieGoal": 2500
+    "eatenMeals": [{
+        "foodName": "Apple",
+        "calories": 200
+    }],
+    "calorieGoal": 1000
 }
