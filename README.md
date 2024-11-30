@@ -59,3 +59,11 @@ Wed Nov 29 14:24:15 PST 2023
 Event log cleared.
 ```
 
+# Phase 4: Task 3
+
+If I had more time to work on the project, I would implement several refactoring changes to improve the design. First, I would introduce a MealManager class that would act as a facade between the UI classes (CalorieMateGUI and CalorieMate) and the model classes (Meals and FoodItem). This would reduce the coupling between UI and model classes, making the system more modular and easier to modify. Currently, both UI classes are directly coupled to the Meals class, which violates the principle of having a single responsibility per class.
+
+Additionally, I would extract the persistence logic from JWriter and JReader into a dedicated MealPersistence interface, following the dependency inversion principle. This would allow for different persistence implementations (like database storage) without modifying the existing code. I would also consider creating a dedicated EventLogger class to handle the event logging functionality currently embedded in the Meals class. This would better follow the single responsibility principle, as currently the Meals class is responsible for both meal management and event logging.
+
+
+
