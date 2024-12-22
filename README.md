@@ -1,69 +1,34 @@
-# **My Personal Project**
+# CalorieMate
 
-## CalorieMate
+CalorieMate is a simple, user-friendly application designed to help you track your calorie intake, set daily calorie goals, and monitor your progress. Whether you're bulking, cutting, or just aiming for better dietary habits, CalorieMate makes calorie management straightforward and accessible.
 
-For my term project in CPSC 210, I would like to create an application that essentially tracks the food you eat, tracks those calories, lets you set a calorie goal, and tells you how many calories you have left to consume to reach that goal. 
-I believe my app has potential to be used by a wide variety of people:
-- Gymgoers
-- Athletes
-- People with eating disorders
-- Anyone actively trying to track their calories to gain/lose weight
+## Key Features
+- Log Your Meals: Add food items, specify portion sizes, and track their calories.  
+- Set and Track Goals: Define your daily calorie target and see how many calories you have left.  
+- View Your Progress: Easily review all logged meals and sort them by calorie count.  
+- Edit Your Log: Remove any mistakenly added food items.  
+- Save and Load: Save your data to a file and load it later to pick up where you left off.  
 
-With an extremely simple and user-friendly design, I believe my app can be used by almost anyone. The reason that this project is of interest to me is because managing my weight has always been troublesome for me, and as I am *bulking*, I think it just makes sense for me to create this applicaiton. 
+## Why CalorieMate?
+CalorieMate was created with inclusivity and simplicity in mind. Whether you're a:  
+- Gymgoer trying to bulk or cut,  
+- Athlete looking to optimize performance,  
+- Person managing an eating disorder, or  
+- Anyone trying to maintain or improve their health,  
 
-## User Stories
+CalorieMate has you covered.
 
-- As a user, I want to be able to add a food item to my daily log and specify the portion size and calories.
-- As a user, I want to be able to view a list of the food items I’ve logged for the day.
-- As a user, I want to be able to see the total calories I’ve consumed and how many I have left for the day based on my target.
-- As a user, I want to be able to remove a food item from my daily log if I added it by mistake.
-- As a user, I want to be able to save the entire state of the CalorieMate application including my logged food items and calorie goals to a file, so that I can resume tracking my progress at a later time.
-- As a user, I want to be able to load the saved state of my application from a file, so that I can continue from where I left off, with all my previous data restored.
+## How It Works
 
- # Instructions for End User
+### Logging Meals
+1. Add a food item, specifying its portion size and calorie content.  
+2. View a list of logged food items for the day.  
+3. Remove any items if needed.  
 
-- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking sort by calories, to reorder the food items, by their calorie count.
-- You can generate the second required action related to the user story "adding multiple Xs to a Y" by selecting a food you have eaten then clicking remove selected to remove the food from your list of eaten meals.
-- You can locate my visual component by running the app to see the splash screen, or by adding a calorie goal and adding a food to see the graph of your calorie goal to better track your progress.
-- You can save the state of my application by clicking the save button or clicking yes when asked whether you would like the save your data when closing the application.
-- You can reload the state of my application by clicking the load button.
+### Tracking Goals
+- Set your calorie goal for the day.  
+- Monitor your calorie consumption and see how many calories remain.  
 
-# Phase 4: Task 2
-
-When I run my application and perform the following actions:
-1. Set a calorie goal of 2000
-2. Add a banana (105 calories)
-3. Add an apple (95 calories)
-4. Sort the meals by calories
-5. Remove the apple
-6. Save and quit
-
-The following events are logged:
-```
-Wed Nov 29 14:23:45 PST 2023
-Set calorie goal to: 2000
-
-Wed Nov 29 14:23:52 PST 2023
-Added food item: Banana (105 calories)
-
-Wed Nov 29 14:24:01 PST 2023
-Added food item: Apple (95 calories)
-
-Wed Nov 29 14:24:05 PST 2023
-Sorted meals by calories in descending order
-
-Wed Nov 29 14:24:10 PST 2023
-Removed food item: Apple
-
-Wed Nov 29 14:24:15 PST 2023
-Event log cleared.
-```
-
-# Phase 4: Task 3
-
-If I had more time to work on the project, I would implement several refactoring changes to improve the design. First, I would introduce a MealManager class that would act as a facade between the UI classes (CalorieMateGUI and CalorieMate) and the model classes (Meals and FoodItem). This would reduce the coupling between UI and model classes, making the system more modular and easier to modify. Currently, both UI classes are directly coupled to the Meals class, which violates the principle of having a single responsibility per class.
-
-Additionally, I would extract the persistence logic from JWriter and JReader into a dedicated MealPersistence interface, following the dependency inversion principle. This would allow for different persistence implementations (like database storage) without modifying the existing code. I would also consider creating a dedicated EventLogger class to handle the event logging functionality currently embedded in the Meals class. This would better follow the single responsibility principle, as currently the Meals class is responsible for both meal management and event logging.
-
-
-
+### Data Management
+- Save your progress anytime.  
+- Load previously saved data to continue seamlessly.  
